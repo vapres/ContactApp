@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#75B6E4"
+    android:padding="16dp"
+    tools:context=".AddContactActivity">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".3" />
+
+    <TextView
+        android:id="@+id/tv_new_contact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="@string/new_contact"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@id/imv_ic_contact"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/guideline" />
+
+    <ImageView
+        android:id="@+id/imv_ic_contact"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/ic_contact"
+        app:layout_constraintBottom_toTopOf="@id/imv_ic_phone"
+        app:layout_constraintEnd_toStartOf="@id/edt_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_new_contact" />
+
+    <EditText
+        android:id="@+id/edt_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:hint="@string/name"
+        android:inputType="text"
+        android:padding="16dp"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@id/imv_ic_contact"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/imv_ic_contact"
+        app:layout_constraintTop_toTopOf="@id/imv_ic_contact" />
+
+    <ImageView
+        android:id="@+id/imv_ic_phone"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/ic_telephone"
+        app:layout_constraintEnd_toStartOf="@id/edt_phone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imv_ic_contact" />
+
+
+    <EditText
+        android:id="@+id/edt_phone"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:hint="@string/number"
+        android:inputType="phone"
+        android:padding="16dp"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@id/imv_ic_phone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/imv_ic_phone"
+        app:layout_constraintTop_toTopOf="@id/imv_ic_phone" />
+
+    <ImageView
+        android:id="@+id/imv_ic_description"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/ic_info"
+        app:layout_constraintEnd_toStartOf="@id/edt_description"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imv_ic_phone" />
+
+
+    <EditText
+        android:id="@+id/edt_description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:hint="@string/description"
+        android:inputType="text"
+        android:padding="16dp"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@id/imv_ic_description"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/imv_ic_description"
+        app:layout_constraintTop_toTopOf="@id/imv_ic_description" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_save_contact"
+        style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/grey_8"
+        android:onClick="onSaveClick"
+        android:text="@string/save"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edt_description" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
