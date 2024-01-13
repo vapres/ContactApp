@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#75B6E4"
+    android:background="@color/blue"
     android:padding="16dp"
     tools:context=".AddContactActivity">
 
@@ -30,8 +30,8 @@
 
     <ImageView
         android:id="@+id/imv_ic_contact"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:src="@drawable/ic_contact"
@@ -56,8 +56,8 @@
 
     <ImageView
         android:id="@+id/imv_ic_phone"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:src="@drawable/ic_telephone"
@@ -82,8 +82,8 @@
 
     <ImageView
         android:id="@+id/imv_ic_description"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:src="@drawable/ic_info"

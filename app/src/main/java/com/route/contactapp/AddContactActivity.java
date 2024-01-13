@@ -42,7 +42,8 @@ public class AddContactActivity extends AppCompatActivity {
             Contact newContact = new Contact(name, R.drawable.ic_avatar, phoneNumber, description);
             Intent intent = new Intent(this, MainContactsScreenActivity.class);
             intent.putExtra("contact", newContact);
-            startActivity(intent);
+            setResult(RESULT_OK, intent);
+            finish();
         }
     }
 

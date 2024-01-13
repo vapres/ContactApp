@@ -37,6 +37,12 @@ public class RecyclerMainContactsAdapter extends RecyclerView.Adapter<RecyclerMa
     }
 
 
+    public void addContactItem(Contact contact){
+        this.contacts.add(contact);
+        notifyDataSetChanged();
+    }
+
+
     OnItemClickListener onItemClickListener;
 
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
@@ -46,6 +52,7 @@ public class RecyclerMainContactsAdapter extends RecyclerView.Adapter<RecyclerMa
     public interface OnItemClickListener{
         void onItemClick(Contact contact, int position);
     }
+
 
     @Override
     public int getItemCount() {

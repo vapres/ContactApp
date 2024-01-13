@@ -1,5 +1,10 @@
 package com.route.contactapp;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContract;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,6 +25,18 @@ public class MainContactsScreenActivity extends AppCompatActivity {
     RecyclerMainContactsAdapter adapter;
     List<Contact> contactList = new ArrayList<>();
 
+    ActivityResultLauncher<Intent> launcher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult activityResult) {
+                    if (activityResult.getData() != null) {
+                        Contact contact = activityResult.getData().getParcelableExtra("contact");
+                        adapter.addContactItem(contact);
+                    }
+                }
+            }
+    );
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,17 +45,12 @@ public class MainContactsScreenActivity extends AppCompatActivity {
         addNewContact = (FloatingActionButton) findViewById(R.id.btn_add_contact);
         contactRecycler = findViewById(R.id.rv_contacts);
 
-        Intent intent = getIntent();
-        if (intent != null) {
-            Contact contact = intent.getParcelableExtra("contact");
-            contactList.add(contact);
-        }
-
         addNewContact.setOnClickListener(v -> onAddClick());
         if (contactList != null) {
             adapter = new RecyclerMainContactsAdapter(contactList);
             contactRecycler.setAdapter(adapter);
         }
+
         adapter.setOnItemClickListener((contact, position) -> {
             Intent intent2 = new Intent(this, ContactDetailsActivity.class);
             intent2.putExtra("clicked contact", contact);
@@ -47,9 +59,8 @@ public class MainContactsScreenActivity extends AppCompatActivity {
     }
 
 
-
     public void onAddClick() {
         Intent intent = new Intent(this, AddContactActivity.class);
-        startActivity(intent);
+        launcher.launch(intent);
     }
 }

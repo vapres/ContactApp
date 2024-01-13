@@ -43,7 +43,6 @@ public class ContactDetailsActivity extends AppCompatActivity {
     }
 
     private void onBackClick() {
-        Intent intent = new Intent(this, MainContactsScreenActivity.class);
-        startActivity(intent);
+        finish();
     }
 }
