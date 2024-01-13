@@ -26,12 +26,7 @@ public class AddContactActivity extends AppCompatActivity {
         nameEditText = findViewById(R.id.edt_name);
         phoneEditText = findViewById(R.id.edt_phone);
         descriptionEditText = findViewById(R.id.edt_description);
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onSaveClick();
-            }
-        });
+        saveButton.setOnClickListener(v -> onSaveClick());
     }
 
     private void onSaveClick() {
@@ -39,7 +34,7 @@ public class AddContactActivity extends AppCompatActivity {
         String phoneNumber = phoneEditText.getText().toString().trim();
         String description = descriptionEditText.getText().toString().trim();
         if(validateInput(name, phoneNumber)){
-            Contact newContact = new Contact(name, R.drawable.ic_avatar, phoneNumber, description);
+            Contact newContact = new Contact(name, phoneNumber, description);
             Intent intent = new Intent(this, MainContactsScreenActivity.class);
             intent.putExtra("contact", newContact);
             setResult(RESULT_OK, intent);
