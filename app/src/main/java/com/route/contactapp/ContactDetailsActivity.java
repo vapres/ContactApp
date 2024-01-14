@@ -9,37 +9,30 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.route.contactapp.databinding.ActivityContactDetailsBinding;
+import com.route.contactapp.databinding.ActivityMainContactsScreenBinding;
+
 
 public class ContactDetailsActivity extends AppCompatActivity {
-
-    Button backButton;
-    ImageView contactImg;
-    TextView contactName;
-    TextView contactNumber;
-    TextView contactDesc;
+    private ActivityContactDetailsBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_contact_details);
-        backButton = findViewById(R.id.btn_ic_back);
-        contactImg = findViewById(R.id.logo);
-        contactName = findViewById(R.id.name);
-        contactNumber = findViewById(R.id.number);
-        contactDesc = findViewById(R.id.desc);
-
+        binding = ActivityContactDetailsBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         Intent intent = getIntent();
         if (intent != null) {
             Contact contact = intent.getParcelableExtra("clicked contact");
             if (contact != null) {
-                contactImg.setImageResource(contact.contactLogo);
-                contactName.setText(contact.contactName);
-                contactNumber.setText(contact.contactPhoneNumber);
-                contactDesc.setText(contact.description);
+                binding.logo.setImageResource(contact.contactLogo);
+                binding.name.setText(contact.contactName);
+                binding.number.setText(contact.contactPhoneNumber);
+                binding.desc.setText(contact.description);
             }
 
         }
-        backButton.setOnClickListener(v -> onBackClick());
+        binding.btnIcBack.setOnClickListener(v -> onBackClick());
     }
 
     private void onBackClick() {

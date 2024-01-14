@@ -11,17 +11,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.route.contactapp.databinding.ActivityMainContactsScreenBinding;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainContactsScreenActivity extends AppCompatActivity {
 
-    FloatingActionButton addNewContact;
-    RecyclerView contactRecycler;
+    private ActivityMainContactsScreenBinding binding;
     RecyclerMainContactsAdapter adapter;
     List<Contact> contactList = new ArrayList<>();
 
@@ -33,6 +34,8 @@ public class MainContactsScreenActivity extends AppCompatActivity {
                     if (activityResult.getData() != null) {
                         Contact contact = activityResult.getData().getParcelableExtra("contact");
                         adapter.addContactItem(contact);
+                        binding.tvInit.setText("");
+                        binding.imvInit.setImageResource(0);
                     }
                 }
             }
@@ -41,14 +44,14 @@ public class MainContactsScreenActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_contacts_screen);
-        addNewContact = (FloatingActionButton) findViewById(R.id.btn_add_contact);
-        contactRecycler = findViewById(R.id.rv_contacts);
-
-        addNewContact.setOnClickListener(v -> onAddClick());
+        binding = ActivityMainContactsScreenBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+        binding.tvInit.setText(R.string.no_contacts);
+        binding.imvInit.setImageResource(R.drawable.ic_init);
+        binding.btnAddContact.setOnClickListener(v -> onAddClick());
         if (contactList != null) {
             adapter = new RecyclerMainContactsAdapter(contactList);
-            contactRecycler.setAdapter(adapter);
+            binding.rvContacts.setAdapter(adapter);
         }
 
         adapter.setOnItemClickListener((contact, position) -> {

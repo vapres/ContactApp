@@ -10,31 +10,26 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
+import com.route.contactapp.databinding.ActivityAddContactBinding;
+import com.route.contactapp.databinding.ActivityContactDetailsBinding;
 
 public class AddContactActivity extends AppCompatActivity {
 
-    MaterialButton saveButton;
-    EditText nameEditText;
-    EditText phoneEditText;
-
-    EditText descriptionEditText;
+    private ActivityAddContactBinding binding;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_contact);
-        saveButton = findViewById(R.id.btn_save_contact);
-        nameEditText = findViewById(R.id.edt_name);
-        phoneEditText = findViewById(R.id.edt_phone);
-        descriptionEditText = findViewById(R.id.edt_description);
-        saveButton.setOnClickListener(v -> onSaveClick());
+        binding = ActivityAddContactBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+        binding.btnSaveContact.setOnClickListener(v -> onSaveClick());
     }
 
     private void onSaveClick() {
-        String name = nameEditText.getText().toString().trim();
-        String phoneNumber = phoneEditText.getText().toString().trim();
-        String description = descriptionEditText.getText().toString().trim();
-        if(validateInput(name, phoneNumber)){
+        String name = binding.edtName.getText().toString().trim();
+        String phoneNumber = binding.edtPhone.getText().toString().trim();
+        String description = binding.edtDescription.getText().toString().trim();
+        if (validateInput(name, phoneNumber)) {
             Contact newContact = new Contact(name, phoneNumber, description);
             Intent intent = new Intent(this, MainContactsScreenActivity.class);
             intent.putExtra("contact", newContact);
