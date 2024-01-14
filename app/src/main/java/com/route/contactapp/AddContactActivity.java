@@ -18,6 +18,7 @@ public class AddContactActivity extends AppCompatActivity {
     EditText phoneEditText;
 
     EditText descriptionEditText;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
